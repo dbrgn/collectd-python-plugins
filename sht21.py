@@ -28,10 +28,12 @@ def read():
 
     # Dispatch values
     v_tmp = collectd.Values(type='temperature')
-    v_tmp.plugin = 'sht21_temp'
+    v_tmp.plugin = 'sht21'
+    v_tmp.type = 'temperature'
     v_tmp.dispatch(values=[temperature])
     v_hum = collectd.Values(type='humidity')
-    v_hum.plugin = 'sht21_humi'
+    v_hum.plugin = 'sht21'
+    v_hum.type = 'humidity'
     v_hum.dispatch(values=[humidity])
 
 
