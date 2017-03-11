@@ -28,13 +28,13 @@ def read_func():
     with open(PATH, 'rb') as f:
         temp = f.read().strip()
 
-    # Convert to integer
-    mdeg = int(temp)
+    # Convert to degrees celsius
+    deg = float(int(temp)) / 1000
 
     # Dispatch value to collectd
     val = collectd.Values(type='temperature')
     val.plugin = 'cpu_temp'
-    val.dispatch(values=[mdeg])
+    val.dispatch(values=[deg])
 
 
 collectd.register_config(config_func)
