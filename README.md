@@ -4,7 +4,8 @@ This is a collections of Python plugin for Collectd.
 
 - `cpu_temp.py`: Report the CPU temperature. Tested on a Raspberry Pi 3.
 - `sht21.py`: Measure temperature and relative humidity from a Sensirion SHT21
-  sensor connected via I²C. Tested on a Raspberry Pi 3.
+  sensor connected via I²C. Calculate dew point and absolute humidity. Tested
+  on a Raspberry Pi 3.
 
 For more information, please refer to [my
 blogpost](https://blog.dbrgn.ch/2017/3/10/write-a-collectd-python-plugin/).
