@@ -6,6 +6,7 @@ This is a collections of Python plugin for Collectd.
 - `sht21.py`: Measure temperature and relative humidity from a Sensirion SHT21
   sensor connected via I²C. Calculate dew point and absolute humidity. Tested
   on a Raspberry Pi 3.
+- `mcp3425.py`: Measure voltage using an MCP3425 analog-digital converter.
 
 For more information, please refer to [my
 blogpost](https://blog.dbrgn.ch/2017/3/10/write-a-collectd-python-plugin/).
@@ -42,6 +43,20 @@ There are currently no configuration options available.
     <Plugin python>
         ModulePath "/opt/collectd_plugins"
         Import "sht21"
+    </Plugin>
+
+### mcp3425
+
+The plugin assumes that you're using three voltage divider resistors to bring
+the voltage into a measurable range. You can configure them in the Python
+script.
+
+There are currently no configuration options available.
+
+    LoadPlugin python
+    <Plugin python>
+        ModulePath "/opt/collectd_plugins"
+        Import "mcp3425"
     </Plugin>
 
 ## License
