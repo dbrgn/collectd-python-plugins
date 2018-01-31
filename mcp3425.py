@@ -74,7 +74,7 @@ def read():
     bus = smbus.SMBus(1)
 
     # Write configuration
-    config = START_CONVERSION | CONVERSION_MODE_ONESHOT | SAMPLE_RATE_15SPS | PGA_GAIN_2
+    config = START_CONVERSION | CONVERSION_MODE_ONESHOT | SAMPLE_RATE_15SPS | PGA_GAIN_1
     bus.write_byte(DEVICE_ADDRESS, config)
 
     # Wait a bit for the measurement to finish
