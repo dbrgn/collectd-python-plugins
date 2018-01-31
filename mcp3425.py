@@ -62,7 +62,7 @@ def get_voltage(measurement, bit):
     """
     v2 = measurement * ADC_REF / (2**bit)
     total_r = DIVIDER_R1 + DIVIDER_R2 + DIVIDER_R3
-    return v2 / (DIVIDER_R2 / total_r)
+    return v2 / (DIVIDER_R2 / total_r) * 2
 
 
 def init():
