@@ -69,6 +69,8 @@ The plugin assumes that you're using three voltage divider resistors to bring
 the voltage into a measurable range. You can configure them in the Python
 script.
 
+This plugin requires the python-smbus package to be installed.
+
 There are currently no configuration options available.
 
     LoadPlugin python

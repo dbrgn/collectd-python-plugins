@@ -4,6 +4,8 @@ MCP3425 ADC Plugin.
 
 Return supply voltage (in mV) from ADC readings.
 
+This plugin requires the python-smbus package to be installed.
+
 Configure your three voltage divider resistors below.
 Default values are 6.8K, 3.6K and 470.
 
