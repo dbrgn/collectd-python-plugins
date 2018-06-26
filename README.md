@@ -79,6 +79,20 @@ There are currently no configuration options available.
         Import "mcp3425"
     </Plugin>
 
+## Other Plugins
+
+This is my personal collection of plugins. If you also created a Collectd
+plugin that's great! I won't accept pull requests for now though since I cannot
+test and maintain plugins for which I don't have any matching hardware.
+
+Instead, feel free to create a pull request to add your plugin to the list
+below!
+
+<!-- - [`name.py`](link-to-plugin): Description of the plugin -->
+
+- [`arris_modem.py`](https://github.com/jakup/collectd-python-plugins): Report
+  the upstream/downstream channels of an Arris DOCSIS3 cable modem.
+
 ## License
 
 MIT License, see LICENSE file.
