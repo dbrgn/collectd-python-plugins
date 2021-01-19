@@ -19,8 +19,9 @@ import collectd
 
 DEV_REG = '/sys/bus/i2c/devices/i2c-1/new_device'
 DEV_REG_PARAM = 'shtc1 0x70'
-DEV_TMP = '/sys/class/hwmon/hwmon0/temp1_input'
-DEV_HUM = '/sys/class/hwmon/hwmon0/humidity1_input'
+DEV_TMP = '/sys/class/hwmon/{}/temp1_input'
+DEV_HUM = '/sys/class/hwmon/{}/humidity1_input'
+HWMON = 'hwmon0'
 
 
 def pws_constants(t):
@@ -92,7 +93,7 @@ def ah(t, rh):
 
 
 def init():
-    if os.path.isfile(DEV_TMP) and os.path.isfile(DEV_HUM):
+    if os.path.isfile(DEV_TMP.format(HWMON)) and os.path.isfile(DEV_HUM.format(HWMON)):
         collectd.info('shtc3 plugin: Sensor already registered in sysfs')
     else:
         with open(DEV_REG, 'wb') as f:
@@ -100,12 +101,32 @@ def init():
         collectd.info('shtc3 plugin: Sensor successfully registered in sysfs')
 
 
+def config(config):
+    hwmon_set = False
+
+    for node in config.children:
+        key = node.key.lower()
+        val = node.values[0]
+
+        if key == 'hwmon':
+            global HWMON
+            HWMON = val
+            hwmon_set = True
+        else:
+            collectd.info('shtc3 plugin: Unknown config key "%s"' % key)
+
+    if hwmon_set:
+        collectd.info('shtc3 plugin: Using overridden hwmon: %s' % HWMON)
+    else:
+        collectd.info('shtc3 plugin: Using default hwmon: %s' % HWMON)
+
+
 def read():
     # Read values
-    with open(DEV_TMP, 'rb') as f:
+    with open(DEV_TMP.format(HWMON), 'rb') as f:
         val = f.read().strip()
         temperature = float(int(val)) / 1000
-    with open(DEV_HUM, 'rb') as f:
+    with open(DEV_HUM.format(HWMON), 'rb') as f:
         val = f.read().strip()
         humidity = float(int(val)) / 1000
 
@@ -129,4 +150,5 @@ def read():
 
 
 collectd.register_init(init)
+collectd.register_config(config)
 collectd.register_read(read)

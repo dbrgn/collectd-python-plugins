@@ -55,12 +55,23 @@ For this plugin to work, the `shtc1` kernel module must be loaded:
     echo "shtc1" > /etc/modules-load.d/shtc1.conf
     modprobe shtc1
 
-There are currently no configuration options available.
+Default config:
 
     LoadPlugin python
     <Plugin python>
         ModulePath "/opt/collectd_plugins"
         Import "shtc3"
+    </Plugin>
+
+Optionally, the hwmon device (hwmon0 by default) can be configured:
+
+    LoadPlugin python
+    <Plugin python>
+        ModulePath "/opt/collectd_plugins"
+        Import "shtc3"
+        <Module shtc3>
+            Hwmon "hwmon2"
+        </Module>
     </Plugin>
 
 ### mcp3425
