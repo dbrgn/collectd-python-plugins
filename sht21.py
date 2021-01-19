@@ -118,7 +118,7 @@ def read():
     absolute_humidity = ah(temperature, humidity)
 
     # Dispatch values
-    v_tmp = collectd.Values(plugin='sht21', type='temperature', type_instance='current')
+    v_tmp = collectd.Values(plugin='sht21', type='temperature', type_instance='temperature')
     v_tmp.dispatch(values=[temperature])
     v_hum = collectd.Values(plugin='sht21', type='humidity', type_instance='relative_humidity')
     v_hum.dispatch(values=[humidity])
